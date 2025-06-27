@@ -48,7 +48,7 @@ export const ChatPanel: React.FC = () => {
     } catch (error) {
       addChatMessage({
         type: 'assistant',
-        content: 'Sorry, I encountered an error processing your request. Please try again.',
+        content: 'リクエストの処理中にエラーが発生しました。もう一度お試しください。',
       });
       console.error('AI Service Error:', error);
     } finally {
@@ -67,10 +67,10 @@ export const ChatPanel: React.FC = () => {
     <Box style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Box p="md" style={{ borderBottom: '1px solid #333' }}>
         <Text size="lg" fw={600}>
-          AI Assistant
+          AIアシスタント
         </Text>
         <Text size="sm" c="dimmed">
-          Describe what you want to create
+          作成したいものを説明してください
         </Text>
       </Box>
 
@@ -79,9 +79,9 @@ export const ChatPanel: React.FC = () => {
           {chatMessages.length === 0 && (
             <Paper p="md" bg="dark.7">
               <Text size="sm" c="dimmed" ta="center">
-                👋 Hi! I can help you create shapes and animations.
+                👋 こんにちは！図形やアニメーションの作成をお手伝いします。
                 <br />
-                Try saying: \"Create a red circle\" or \"Make it bounce\"
+                例: 「赤い円を作って」「バウンスさせて」
               </Text>
             </Paper>
           )}
@@ -141,7 +141,7 @@ export const ChatPanel: React.FC = () => {
                 <Group gap="sm">
                   <Loader size="sm" />
                   <Text size="sm" c="dimmed">
-                    Thinking...
+                    考え中...
                   </Text>
                 </Group>
               </Paper>
@@ -154,7 +154,7 @@ export const ChatPanel: React.FC = () => {
         <Group gap="sm">
           <TextInput
             flex={1}
-            placeholder="Describe what you want to create..."
+            placeholder="作成したいものを説明してください..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
@@ -166,7 +166,7 @@ export const ChatPanel: React.FC = () => {
             disabled={!input.trim() || isGenerating}
             leftSection={<IconSend size={16} />}
           >
-            Send
+            送信
           </Button>
         </Group>
       </Box>

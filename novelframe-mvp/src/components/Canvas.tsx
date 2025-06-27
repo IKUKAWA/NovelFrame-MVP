@@ -176,7 +176,7 @@ export const Canvas: React.FC = () => {
           fontSize: '18px',
         }}
       >
-        Create or open a project to start
+プロジェクトを作成または開いて開始してください
       </Box>
     );
   }

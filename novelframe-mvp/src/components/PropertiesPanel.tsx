@@ -30,17 +30,17 @@ export const PropertiesPanel: React.FC = () => {
       <Tabs defaultValue="properties" style={{ height: '100%' }}>
         <Tabs.List>
           <Tabs.Tab value="properties" leftSection={<IconSettings size={14} />}>
-            Properties
+            プロパティ
           </Tabs.Tab>
           <Tabs.Tab value="animation" leftSection={<IconPlayerPlay size={14} />}>
-            Animation
+            アニメーション
           </Tabs.Tab>
         </Tabs.List>
         
         <Tabs.Panel value="properties" pt="md">
           <Box p="md">
             <Text size="sm" c="dimmed" ta="center">
-              Select a shape to edit its properties
+              シェイプを選択してプロパティを編集
             </Text>
           </Box>
         </Tabs.Panel>
@@ -48,7 +48,7 @@ export const PropertiesPanel: React.FC = () => {
         <Tabs.Panel value="animation" pt="md">
           <Box p="md">
             <Text size="sm" c="dimmed" ta="center">
-              Select a shape to add animations
+              シェイプを選択してアニメーションを追加
             </Text>
           </Box>
         </Tabs.Panel>
@@ -61,20 +61,20 @@ export const PropertiesPanel: React.FC = () => {
       <Tabs defaultValue="properties" style={{ height: '100%' }}>
         <Tabs.List>
           <Tabs.Tab value="properties" leftSection={<IconSettings size={14} />}>
-            Properties
+            プロパティ
           </Tabs.Tab>
           <Tabs.Tab value="animation" leftSection={<IconPlayerPlay size={14} />}>
-            Animation
+            アニメーション
           </Tabs.Tab>
         </Tabs.List>
         
         <Tabs.Panel value="properties" pt="md">
           <Box p="md">
             <Text size="sm" c="dimmed" ta="center">
-              Multiple shapes selected
+              複数のシェイプが選択されています
             </Text>
             <Text size="xs" c="dimmed" ta="center" mt="xs">
-              Select a single shape to edit properties
+              プロパティを編集するには1つのシェイプを選択してください
             </Text>
           </Box>
         </Tabs.Panel>
@@ -82,10 +82,10 @@ export const PropertiesPanel: React.FC = () => {
         <Tabs.Panel value="animation" pt="md">
           <Box p="md">
             <Text size="sm" c="dimmed" ta="center">
-              Multiple shapes selected
+              複数のシェイプが選択されています
             </Text>
             <Text size="xs" c="dimmed" ta="center" mt="xs">
-              Select a single shape to add animations
+              アニメーションを追加するには1つのシェイプを選択してください
             </Text>
           </Box>
         </Tabs.Panel>
@@ -108,10 +108,10 @@ export const PropertiesPanel: React.FC = () => {
     <Tabs defaultValue="properties" style={{ height: '100%' }}>
       <Tabs.List>
         <Tabs.Tab value="properties" leftSection={<IconSettings size={14} />}>
-          Properties
+          プロパティ
         </Tabs.Tab>
         <Tabs.Tab value="animation" leftSection={<IconPlayerPlay size={14} />}>
-          Animation
+          アニメーション
         </Tabs.Tab>
       </Tabs.List>
       
@@ -119,7 +119,7 @@ export const PropertiesPanel: React.FC = () => {
         <Box p="md" style={{ height: 'calc(100% - 60px)', overflowY: 'auto' }}>
           <Group justify="space-between" mb="md">
             <Text size="lg" fw={600}>
-              Properties
+              プロパティ
             </Text>
             <Button
               variant="subtle"
@@ -128,14 +128,14 @@ export const PropertiesPanel: React.FC = () => {
               leftSection={<IconTrash size={14} />}
               onClick={handleDelete}
             >
-              Delete
+              削除
             </Button>
           </Group>
 
       <Stack gap="md">
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Type
+            タイプ
           </Text>
           <Text size="sm" c="dimmed" tt="capitalize">
             {selectedShape.type}
@@ -146,17 +146,17 @@ export const PropertiesPanel: React.FC = () => {
 
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Position
+            位置
           </Text>
           <Group grow>
             <NumberInput
-              label="X"
+              label="X座標"
               value={selectedShape.x}
               onChange={(value) => handlePropertyChange('x', value || 0)}
               step={1}
             />
             <NumberInput
-              label="Y"
+              label="Y座標"
               value={selectedShape.y}
               onChange={(value) => handlePropertyChange('y', value || 0)}
               step={1}
@@ -166,11 +166,11 @@ export const PropertiesPanel: React.FC = () => {
 
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Size
+            サイズ
           </Text>
           {selectedShape.type === 'circle' && (
             <NumberInput
-              label="Radius"
+              label="半径"
               value={selectedShape.radius || 50}
               onChange={(value) => handlePropertyChange('radius', value || 50)}
               min={1}
@@ -180,14 +180,14 @@ export const PropertiesPanel: React.FC = () => {
           {(selectedShape.type === 'rectangle') && (
             <Group grow>
               <NumberInput
-                label="Width"
+                label="幅"
                 value={selectedShape.width || 100}
                 onChange={(value) => handlePropertyChange('width', value || 100)}
                 min={1}
                 step={1}
               />
               <NumberInput
-                label="Height"
+                label="高さ"
                 value={selectedShape.height || 60}
                 onChange={(value) => handlePropertyChange('height', value || 60)}
                 min={1}
@@ -197,7 +197,7 @@ export const PropertiesPanel: React.FC = () => {
           )}
           {selectedShape.type === 'text' && (
             <NumberInput
-              label="Font Size"
+              label="フォントサイズ"
               value={selectedShape.fontSize || 24}
               onChange={(value) => handlePropertyChange('fontSize', value || 24)}
               min={8}
@@ -210,12 +210,12 @@ export const PropertiesPanel: React.FC = () => {
         {selectedShape.type === 'text' && (
           <div>
             <TextInput
-              label="Text"
+              label="テキスト"
               value={selectedShape.text || ''}
               onChange={(e) => handlePropertyChange('text', e.target.value)}
             />
             <TextInput
-              label="Font Family"
+              label="フォントファミリー"
               value={selectedShape.fontFamily || 'Inter'}
               onChange={(e) => handlePropertyChange('fontFamily', e.target.value)}
               mt="xs"
@@ -227,10 +227,10 @@ export const PropertiesPanel: React.FC = () => {
 
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Transform
+            変形
           </Text>
           <NumberInput
-            label="Rotation (degrees)"
+            label="回転（度）"
             value={selectedShape.rotation}
             onChange={(value) => handlePropertyChange('rotation', value || 0)}
             step={1}
@@ -238,7 +238,7 @@ export const PropertiesPanel: React.FC = () => {
           />
           <Group grow>
             <NumberInput
-              label="Scale X"
+              label="X方向の拡大率"
               value={selectedShape.scaleX}
               onChange={(value) => handlePropertyChange('scaleX', value || 1)}
               step={0.1}
@@ -246,7 +246,7 @@ export const PropertiesPanel: React.FC = () => {
               precision={2}
             />
             <NumberInput
-              label="Scale Y"
+              label="Y方向の拡大率"
               value={selectedShape.scaleY}
               onChange={(value) => handlePropertyChange('scaleY', value || 1)}
               step={0.1}
@@ -260,22 +260,22 @@ export const PropertiesPanel: React.FC = () => {
 
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Appearance
+            外観
           </Text>
           <ColorInput
-            label="Fill Color"
+            label="塗りつぶし色"
             value={selectedShape.fill}
             onChange={(value) => handlePropertyChange('fill', value)}
             mb="xs"
           />
           <ColorInput
-            label="Stroke Color"
+            label="線の色"
             value={selectedShape.stroke}
             onChange={(value) => handlePropertyChange('stroke', value)}
             mb="xs"
           />
           <NumberInput
-            label="Stroke Width"
+            label="線の太さ"
             value={selectedShape.strokeWidth}
             onChange={(value) => handlePropertyChange('strokeWidth', value || 0)}
             min={0}
@@ -284,7 +284,7 @@ export const PropertiesPanel: React.FC = () => {
           />
           <div>
             <Text size="sm" mb="xs">
-              Opacity: {Math.round(selectedShape.opacity * 100)}%
+              不透明度: {Math.round(selectedShape.opacity * 100)}%
             </Text>
             <Slider
               value={selectedShape.opacity * 100}
@@ -305,7 +305,7 @@ export const PropertiesPanel: React.FC = () => {
 
         <div>
           <Switch
-            label="Visible"
+            label="表示"
             checked={selectedShape.visible}
             onChange={(e) => handlePropertyChange('visible', e.target.checked)}
           />

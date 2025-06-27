@@ -5,7 +5,16 @@
       "Bash(npm install)",
       "Bash(npm install:*)",
       "Bash(mv:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run:*)",
+      "Bash(rg:*)",
+      "Bash(pkill:*)",
+      "Bash(rm:*)",
+      "Bash(kill:*)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }

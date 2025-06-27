@@ -21,7 +21,7 @@ import {
   IconPlay,
   IconPause,
   IconStop,
-  IconGrid3X3,
+  IconGrid3x3,
   IconMagnet,
   IconDownload,
 } from '@tabler/icons-react';
@@ -47,15 +47,15 @@ export const Toolbar: React.FC = () => {
   } = useAppStore();
 
   const tools = [
-    { id: 'select' as const, icon: IconSelector, label: 'Select' },
-    { id: 'circle' as const, icon: IconCircle, label: 'Circle' },
-    { id: 'rectangle' as const, icon: IconSquare, label: 'Rectangle' },
-    { id: 'polygon' as const, icon: IconPolygon, label: 'Polygon' },
-    { id: 'text' as const, icon: IconType, label: 'Text' },
+    { id: 'select' as const, icon: IconSelector, label: '選択' },
+    { id: 'circle' as const, icon: IconCircle, label: '円' },
+    { id: 'rectangle' as const, icon: IconSquare, label: '四角形' },
+    { id: 'polygon' as const, icon: IconPolygon, label: '多角形' },
+    { id: 'text' as const, icon: IconType, label: 'テキスト' },
   ];
 
   const handleNewProject = () => {
-    const projectName = prompt('Enter project name:');
+    const projectName = prompt('プロジェクト名を入力してください:');
     if (projectName) {
       createProject(projectName);
     }
@@ -72,7 +72,7 @@ export const Toolbar: React.FC = () => {
         }
       }
     } catch (error) {
-      console.error('Failed to load project:', error);
+      console.error('プロジェクトの読み込みに失敗しました:', error);
     }
   };
 
@@ -83,22 +83,22 @@ export const Toolbar: React.FC = () => {
         <Menu>
           <Menu.Target>
             <Button variant="subtle" leftSection={<IconFile size={16} />}>
-              File
+              ファイル
             </Button>
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Item leftSection={<IconFile size={16} />} onClick={handleNewProject}>
-              New Project
+              新規プロジェクト
             </Menu.Item>
             <Menu.Item leftSection={<IconFolder size={16} />} onClick={handleLoadProject}>
-              Open Project
+              プロジェクトを開く
             </Menu.Item>
             <Menu.Item
               leftSection={<IconDeviceFloppy size={16} />}
               onClick={saveProject}
               disabled={!currentProject}
             >
-              Save Project
+              プロジェクトを保存
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
@@ -124,15 +124,15 @@ export const Toolbar: React.FC = () => {
 
         {/* Grid controls */}
         <Group gap="xs">
-          <Tooltip label="Toggle Grid">
+          <Tooltip label="グリッド表示">
             <ActionIcon
               variant={showGrid ? 'filled' : 'subtle'}
               onClick={toggleGrid}
             >
-              <IconGrid3X3 size={16} />
+              <IconGrid3x3 size={16} />
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Snap to Grid">
+          <Tooltip label="グリッドに吸着">
             <ActionIcon
               variant={snapToGrid ? 'filled' : 'subtle'}
               onClick={toggleSnapToGrid}
@@ -155,7 +155,7 @@ export const Toolbar: React.FC = () => {
 
         {/* Playback controls */}
         <Group gap="xs">
-          <Tooltip label="Play">
+          <Tooltip label="再生">
             <ActionIcon
               variant={isPlaying ? 'filled' : 'subtle'}
               onClick={isPlaying ? pause : play}
@@ -164,7 +164,7 @@ export const Toolbar: React.FC = () => {
               {isPlaying ? <IconPause size={16} /> : <IconPlay size={16} />}
             </ActionIcon>
           </Tooltip>
-          <Tooltip label="Stop">
+          <Tooltip label="停止">
             <ActionIcon
               variant="subtle"
               onClick={stop}
@@ -178,7 +178,7 @@ export const Toolbar: React.FC = () => {
         <Divider orientation="vertical" />
 
         {/* Export */}
-        <Tooltip label="Export">
+        <Tooltip label="エクスポート">
           <ActionIcon
             variant="subtle"
             onClick={() => setShowExportModal(true)}

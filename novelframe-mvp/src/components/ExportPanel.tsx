@@ -39,10 +39,10 @@ export const ExportPanel: React.FC = () => {
     return (
       <Box p="md">
         <Text size="lg" fw={600} mb="md">
-          Export
+          エクスポート
         </Text>
         <Text size="sm" c="dimmed" ta="center">
-          Create a project to export
+          エクスポートするにはプロジェクトを作成してください
         </Text>
       </Box>
     );
@@ -83,7 +83,7 @@ export const ExportPanel: React.FC = () => {
       
       exporter.dispose();
     } catch (error) {
-      console.error('Export failed:', error);
+      console.error('エクスポートに失敗しました:', error);
     } finally {
       setIsExporting(false);
       setTimeout(() => {
@@ -94,25 +94,25 @@ export const ExportPanel: React.FC = () => {
   };
 
   const qualityOptions = [
-    { value: 'low', label: 'Low (Fast)' },
-    { value: 'medium', label: 'Medium' },
-    { value: 'high', label: 'High (Slow)' },
+    { value: 'low', label: '低画質 (高速)' },
+    { value: 'medium', label: '標準画質' },
+    { value: 'high', label: '高画質 (低速)' },
   ];
 
   const formatOptions = [
-    { value: 'mp4', label: 'MP4 Video' },
-    { value: 'webm', label: 'WebM Video' },
-    { value: 'gif', label: 'Animated GIF' },
-    { value: 'png', label: 'PNG Sequence' },
+    { value: 'mp4', label: 'MP4 動画' },
+    { value: 'webm', label: 'WebM 動画' },
+    { value: 'gif', label: 'アニメーションGIF' },
+    { value: 'png', label: 'PNG連番画像' },
   ];
 
   const presets = [
     { name: 'HD 1080p', width: 1920, height: 1080 },
     { name: 'HD 720p', width: 1280, height: 720 },
-    { name: 'Instagram Square', width: 1080, height: 1080 },
-    { name: 'Instagram Story', width: 1080, height: 1920 },
+    { name: 'Instagram スクエア', width: 1080, height: 1080 },
+    { name: 'Instagram ストーリー', width: 1080, height: 1920 },
     { name: 'TikTok', width: 1080, height: 1920 },
-    { name: 'YouTube Thumbnail', width: 1280, height: 720 },
+    { name: 'YouTube サムネイル', width: 1280, height: 720 },
   ];
 
   const estimatedFileSize = () => {
@@ -134,13 +134,13 @@ export const ExportPanel: React.FC = () => {
     <>
       <Box p="md" style={{ height: '100%', overflowY: 'auto' }}>
         <Text size="lg" fw={600} mb="md">
-          Export
+          エクスポート
         </Text>
 
         <Stack gap="md">
           <div>
             <Text size="sm" fw={500} mb="xs">
-              Quick Presets
+              クイックプリセット
             </Text>
             <Stack gap="xs">
               {presets.map((preset) => (
@@ -163,12 +163,12 @@ export const ExportPanel: React.FC = () => {
 
           <div>
             <Text size="sm" fw={500} mb="xs">
-              Export Settings
+              エクスポート設定
             </Text>
             <Stack gap="sm">
               <Group grow>
                 <NumberInput
-                  label="Width"
+                  label="幅"
                   value={exportSettings.width}
                   onChange={(value) => setExportSettings(prev => ({ ...prev, width: value || 1920 }))}
                   min={100}
@@ -176,7 +176,7 @@ export const ExportPanel: React.FC = () => {
                   step={10}
                 />
                 <NumberInput
-                  label="Height"
+                  label="高さ"
                   value={exportSettings.height}
                   onChange={(value) => setExportSettings(prev => ({ ...prev, height: value || 1080 }))}
                   min={100}
@@ -187,7 +187,7 @@ export const ExportPanel: React.FC = () => {
 
               <Group grow>
                 <NumberInput
-                  label="FPS"
+                  label="フレームレート"
                   value={exportSettings.fps}
                   onChange={(value) => setExportSettings(prev => ({ ...prev, fps: value || 30 }))}
                   min={12}
@@ -195,7 +195,7 @@ export const ExportPanel: React.FC = () => {
                   step={1}
                 />
                 <NumberInput
-                  label="Duration (ms)"
+                  label="再生時間 (ミリ秒)"
                   value={exportSettings.duration}
                   onChange={(value) => setExportSettings(prev => ({ ...prev, duration: value || currentProject.duration }))}
                   min={100}
@@ -205,14 +205,14 @@ export const ExportPanel: React.FC = () => {
               </Group>
 
               <Select
-                label="Format"
+                label="フォーマット"
                 value={exportSettings.format}
                 onChange={(value) => setExportSettings(prev => ({ ...prev, format: value as any || 'mp4' }))}
                 data={formatOptions}
               />
 
               <Select
-                label="Quality"
+                label="品質"
                 value={exportSettings.quality}
                 onChange={(value) => setExportSettings(prev => ({ ...prev, quality: value as any || 'medium' }))}
                 data={qualityOptions}
@@ -222,20 +222,20 @@ export const ExportPanel: React.FC = () => {
 
           <div>
             <Text size="sm" fw={500} mb="xs">
-              Preview
+              プレビュー
             </Text>
             <Text size="xs" c="dimmed">
-              Resolution: {exportSettings.width} × {exportSettings.height}<br />
-              Frame Rate: {exportSettings.fps} FPS<br />
-              Duration: {(exportSettings.duration / 1000).toFixed(1)} seconds<br />
-              Total Frames: {Math.ceil((exportSettings.duration / 1000) * exportSettings.fps)}<br />
-              Estimated Size: {estimatedFileSize()}
+              解像度: {exportSettings.width} × {exportSettings.height}<br />
+              フレームレート: {exportSettings.fps} FPS<br />
+              再生時間: {(exportSettings.duration / 1000).toFixed(1)} 秒<br />
+              総フレーム数: {Math.ceil((exportSettings.duration / 1000) * exportSettings.fps)}<br />
+              推定ファイルサイズ: {estimatedFileSize()}
             </Text>
           </div>
 
           {exportSettings.format === 'mp4' && (
             <Alert icon={<IconAlertCircle size={16} />} color="orange">
-              MP4 export is experimental. For best results, use PNG sequence and convert externally.
+              MP4エクスポートは実験的機能です。最良の結果を得るには、PNG連番画像を使用し、外部で変換してください。
             </Alert>
           )}
 
@@ -245,7 +245,7 @@ export const ExportPanel: React.FC = () => {
             size="lg"
             leftSection={exportSettings.format === 'png' ? <IconPhoto size={18} /> : <IconVideo size={18} />}
           >
-            {isExporting ? 'Exporting...' : `Export ${exportSettings.format.toUpperCase()}`}
+            {isExporting ? 'エクスポート中...' : `${exportSettings.format.toUpperCase()}をエクスポート`}
           </Button>
         </Stack>
       </Box>
@@ -253,14 +253,14 @@ export const ExportPanel: React.FC = () => {
       <Modal
         opened={showExportModal}
         onClose={() => !isExporting && setShowExportModal(false)}
-        title="Exporting..."
+        title="エクスポート中..."
         withCloseButton={!isExporting}
         closeOnClickOutside={!isExporting}
         closeOnEscape={!isExporting}
       >
         <Stack gap="md">
           <Text size="sm">
-            {isExporting ? 'Rendering frames...' : 'Export completed!'}
+            {isExporting ? 'フレームをレンダリング中...' : 'エクスポートが完了しました！'}
           </Text>
           <Progress 
             value={exportProgress * 100} 
@@ -268,7 +268,7 @@ export const ExportPanel: React.FC = () => {
             animated={isExporting}
           />
           <Text size="xs" c="dimmed" ta="center">
-            {Math.round(exportProgress * 100)}% complete
+            {Math.round(exportProgress * 100)}% 完了
           </Text>
         </Stack>
       </Modal>

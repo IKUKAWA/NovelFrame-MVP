@@ -44,10 +44,10 @@ export const AnimationPanel: React.FC = () => {
     return (
       <Box p="md">
         <Text size="lg" fw={600} mb="md">
-          Animation
+          アニメーション
         </Text>
         <Text size="sm" c="dimmed" ta="center">
-          Select a single shape to add animations
+          アニメーションを追加するには単一のシェイプを選択してください
         </Text>
       </Box>
     );
@@ -121,21 +121,60 @@ export const AnimationPanel: React.FC = () => {
     });
   };
 
-  const easingOptions = Object.keys(easingFunctions).map(key => ({
-    value: key,
-    label: key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-  }));
+  const easingOptions = Object.keys(easingFunctions).map(key => {
+    const easingTranslations: { [key: string]: string } = {
+      'linear': 'リニア',
+      'ease-in': 'イーズイン',
+      'ease-out': 'イーズアウト',
+      'ease-in-out': 'イーズインアウト',
+      'ease-in-quad': 'イーズインクアッド',
+      'ease-out-quad': 'イーズアウトクアッド',
+      'ease-in-out-quad': 'イーズインアウトクアッド',
+      'ease-in-cubic': 'イーズインキュービック',
+      'ease-out-cubic': 'イーズアウトキュービック',
+      'ease-in-out-cubic': 'イーズインアウトキュービック',
+      'ease-in-quart': 'イーズインクォート',
+      'ease-out-quart': 'イーズアウトクォート',
+      'ease-in-out-quart': 'イーズインアウトクォート',
+      'ease-in-quint': 'イーズインクイント',
+      'ease-out-quint': 'イーズアウトクイント',
+      'ease-in-out-quint': 'イーズインアウトクイント',
+      'ease-in-sine': 'イーズインサイン',
+      'ease-out-sine': 'イーズアウトサイン',
+      'ease-in-out-sine': 'イーズインアウトサイン',
+      'ease-in-expo': 'イーズインエクスポ',
+      'ease-out-expo': 'イーズアウトエクスポ',
+      'ease-in-out-expo': 'イーズインアウトエクスポ',
+      'ease-in-circ': 'イーズインサーク',
+      'ease-out-circ': 'イーズアウトサーク',
+      'ease-in-out-circ': 'イーズインアウトサーク',
+      'ease-in-back': 'イーズインバック',
+      'ease-out-back': 'イーズアウトバック',
+      'ease-in-out-back': 'イーズインアウトバック',
+      'ease-in-elastic': 'イーズインエラスティック',
+      'ease-out-elastic': 'イーズアウトエラスティック',
+      'ease-in-out-elastic': 'イーズインアウトエラスティック',
+      'ease-in-bounce': 'イーズインバウンス',
+      'ease-out-bounce': 'イーズアウトバウンス',
+      'ease-in-out-bounce': 'イーズインアウトバウンス',
+    };
+    
+    return {
+      value: key,
+      label: easingTranslations[key] || key.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+    };
+  });
 
   return (
     <Box p="md" style={{ height: '100%', overflowY: 'auto' }}>
       <Text size="lg" fw={600} mb="md">
-        Animation
+        アニメーション
       </Text>
 
       <Stack gap="md">
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Selected Shape
+            選択されたシェイプ
           </Text>
           <Text size="sm" c="dimmed" tt="capitalize">
             {selectedShape.type} - {selectedShape.id.substring(0, 8)}
@@ -147,7 +186,7 @@ export const AnimationPanel: React.FC = () => {
         <Accordion multiple>
           <Accordion.Item value="quick-animations">
             <Accordion.Control icon={<IconSparkles size={16} />}>
-              Quick Animations
+              クイックアニメーション
             </Accordion.Control>
             <Accordion.Panel>
               <Stack gap="sm">
@@ -157,14 +196,14 @@ export const AnimationPanel: React.FC = () => {
                     onClick={applyBounceAnimation}
                     variant="light"
                   >
-                    Bounce
+                    バウンス
                   </Button>
                   <Button
                     leftSection={<IconRotate size={16} />}
                     onClick={applyRotationAnimation}
                     variant="light"
                   >
-                    Rotate
+                    回転
                   </Button>
                 </Group>
                 <Group grow>
@@ -173,14 +212,14 @@ export const AnimationPanel: React.FC = () => {
                     onClick={applyScaleAnimation}
                     variant="light"
                   >
-                    Scale
+                    スケール
                   </Button>
                   <Button
                     leftSection={<IconEyeOff size={16} />}
                     onClick={applyFadeAnimation}
                     variant="light"
                   >
-                    Fade
+                    フェード
                   </Button>
                 </Group>
               </Stack>
@@ -188,11 +227,11 @@ export const AnimationPanel: React.FC = () => {
           </Accordion.Item>
 
           <Accordion.Item value="animation-settings">
-            <Accordion.Control>Animation Settings</Accordion.Control>
+            <Accordion.Control>アニメーション設定</Accordion.Control>
             <Accordion.Panel>
               <Stack gap="sm">
                 <NumberInput
-                  label="Duration (ms)"
+                  label="継続時間 (ms)"
                   value={animationSettings.duration}
                   onChange={(value) => setAnimationSettings(prev => ({ ...prev, duration: value || 1000 }))}
                   min={100}
@@ -201,24 +240,24 @@ export const AnimationPanel: React.FC = () => {
                 />
 
                 <Select
-                  label="Easing"
+                  label="イージング"
                   value={animationSettings.easing}
                   onChange={(value) => setAnimationSettings(prev => ({ ...prev, easing: value || 'ease-in-out' }))}
                   data={easingOptions}
                 />
 
-                <Text size="sm" fw={500} mt="md">Bounce Settings</Text>
+                <Text size="sm" fw={500} mt="md">バウンス設定</Text>
                 <NumberInput
-                  label="Amplitude"
+                  label="振幅"
                   value={animationSettings.amplitude}
                   onChange={(value) => setAnimationSettings(prev => ({ ...prev, amplitude: value || 50 }))}
                   min={10}
                   max={200}
                 />
 
-                <Text size="sm" fw={500} mt="md">Rotation Settings</Text>
+                <Text size="sm" fw={500} mt="md">回転設定</Text>
                 <NumberInput
-                  label="Rotations"
+                  label="回転数"
                   value={animationSettings.rotations}
                   onChange={(value) => setAnimationSettings(prev => ({ ...prev, rotations: value || 1 }))}
                   min={0.5}
@@ -227,10 +266,10 @@ export const AnimationPanel: React.FC = () => {
                   precision={1}
                 />
 
-                <Text size="sm" fw={500} mt="md">Scale Settings</Text>
+                <Text size="sm" fw={500} mt="md">スケール設定</Text>
                 <Group grow>
                   <NumberInput
-                    label="From Scale"
+                    label="開始スケール"
                     value={animationSettings.fromScale}
                     onChange={(value) => setAnimationSettings(prev => ({ ...prev, fromScale: value || 1 }))}
                     min={0.1}
@@ -239,7 +278,7 @@ export const AnimationPanel: React.FC = () => {
                     precision={1}
                   />
                   <NumberInput
-                    label="To Scale"
+                    label="終了スケール"
                     value={animationSettings.toScale}
                     onChange={(value) => setAnimationSettings(prev => ({ ...prev, toScale: value || 1.5 }))}
                     min={0.1}
@@ -249,10 +288,10 @@ export const AnimationPanel: React.FC = () => {
                   />
                 </Group>
 
-                <Text size="sm" fw={500} mt="md">Fade Settings</Text>
+                <Text size="sm" fw={500} mt="md">フェード設定</Text>
                 <Group grow>
                   <NumberInput
-                    label="From Opacity"
+                    label="開始不透明度"
                     value={animationSettings.fromOpacity}
                     onChange={(value) => setAnimationSettings(prev => ({ ...prev, fromOpacity: value || 1 }))}
                     min={0}
@@ -261,7 +300,7 @@ export const AnimationPanel: React.FC = () => {
                     precision={1}
                   />
                   <NumberInput
-                    label="To Opacity"
+                    label="終了不透明度"
                     value={animationSettings.toOpacity}
                     onChange={(value) => setAnimationSettings(prev => ({ ...prev, toOpacity: value || 0 }))}
                     min={0}
@@ -275,18 +314,18 @@ export const AnimationPanel: React.FC = () => {
           </Accordion.Item>
 
           <Accordion.Item value="manual-keyframe">
-            <Accordion.Control>Manual Keyframe</Accordion.Control>
+            <Accordion.Control>手動キーフレーム</Accordion.Control>
             <Accordion.Panel>
               <Stack gap="sm">
                 <Text size="sm" c="dimmed">
-                  Add a keyframe at the current time with the shape's current properties.
+                  現在時刻でシェイプの現在のプロパティを使用してキーフレームを追加します。
                 </Text>
                 <Button
                   onClick={addCustomKeyframe}
                   variant="outline"
                   fullWidth
                 >
-                  Add Keyframe at {Math.round(currentTime / 1000 * 100) / 100}s
+                  {Math.round(currentTime / 1000 * 100) / 100}秒でキーフレームを追加
                 </Button>
               </Stack>
             </Accordion.Panel>
@@ -297,10 +336,10 @@ export const AnimationPanel: React.FC = () => {
 
         <div>
           <Text size="sm" fw={500} mb="xs">
-            Current Keyframes
+            現在のキーフレーム
           </Text>
           <Text size="xs" c="dimmed">
-            {currentProject.keyframes.filter(kf => kf.shapeId === selectedShape.id).length} keyframes for this shape
+            このシェイプのキーフレーム数: {currentProject.keyframes.filter(kf => kf.shapeId === selectedShape.id).length}
           </Text>
         </div>
       </Stack>

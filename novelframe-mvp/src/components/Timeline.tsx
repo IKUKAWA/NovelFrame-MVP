@@ -76,7 +76,7 @@ export const Timeline: React.FC = () => {
   if (!currentProject) {
     return (
       <Box p="md" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Text c="dimmed">No project loaded</Text>
+        <Text c="dimmed">プロジェクトが読み込まれていません</Text>
       </Box>
     );
   }
@@ -173,7 +173,7 @@ export const Timeline: React.FC = () => {
             onClick={handleAddKeyframe}
             disabled={selectedShapeIds.length !== 1}
           >
-            Add Keyframe
+            キーフレームを追加
           </Button>
         </Group>
       </Group>
@@ -204,7 +204,7 @@ export const Timeline: React.FC = () => {
 
       <Box style={{ position: 'relative', height: '60px', backgroundColor: '#1a1a1a', borderRadius: '4px' }}>
         <Text size="xs" c="dimmed" p="xs">
-          Keyframes
+          キーフレーム
         </Text>
         
         {currentProject.keyframes.map((keyframe) => {
@@ -247,10 +247,11 @@ export const Timeline: React.FC = () => {
       <Group justify="space-between" mt="md">
         <Group gap="md">
           <NumberInput
-            label="Duration (s)"
+            label="再生時間 (秒)"
             value={currentProject.duration / 1000}
             onChange={(value) => {
-              console.log('Update duration:', value);
+              // TODO: Implement duration update functionality
+              // updateProjectDuration(value * 1000);
             }}
             min={1}
             max={60}
@@ -261,10 +262,11 @@ export const Timeline: React.FC = () => {
           />
           
           <NumberInput
-            label="FPS"
+            label="フレームレート"
             value={currentProject.fps}
             onChange={(value) => {
-              console.log('Update FPS:', value);
+              // TODO: Implement FPS update functionality
+              // updateProjectFPS(value);
             }}
             min={12}
             max={60}
