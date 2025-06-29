@@ -7,7 +7,7 @@ export interface ExportSettings {
   fps: number;
   duration: number;
   quality: 'low' | 'medium' | 'high';
-  format: 'mp4' | 'webm' | 'gif';
+  format: 'mp4' | 'webm' | 'gif' | 'png';
 }
 
 export class VideoExporter {

@@ -147,6 +147,38 @@ export const Canvas: React.FC = () => {
               fontFamily: 'Inter',
             };
             break;
+          case 'polygon':
+            // Create a default star polygon
+            const radius = 50;
+            const innerRadius = 25;
+            const points = 5;
+            const vertices = [];
+            
+            for (let i = 0; i < points * 2; i++) {
+              const angle = (i * Math.PI) / points;
+              const r = i % 2 === 0 ? radius : innerRadius;
+              vertices.push({
+                x: Math.cos(angle) * r,
+                y: Math.sin(angle) * r,
+              });
+            }
+            
+            newShape = {
+              type: 'polygon' as const,
+              x,
+              y,
+              rotation: 0,
+              scaleX: 1,
+              scaleY: 1,
+              fill: '#ff8787',
+              stroke: '#fa5252',
+              strokeWidth: 2,
+              opacity: 1,
+              visible: true,
+              zIndex: Date.now(),
+              vertices,
+            };
+            break;
           default:
             return;
         }
